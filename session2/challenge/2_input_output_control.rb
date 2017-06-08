@@ -24,7 +24,7 @@ def hi_hi_goodbye
     puts "Enter a number"
     number = $stdin.gets.chomp
     number.to_i.times { print "hi " }
-    puts "\n"
+    puts
   end
 puts "goodbye"
 end
