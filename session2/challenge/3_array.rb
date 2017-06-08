@@ -7,5 +7,12 @@
 
 class String
   def every_other_char
+    answer = []
+    self.size.times do |i|
+      if i.even?
+        answer << self[i]
+      end
+    end
+    return answer.join
   end
 end
