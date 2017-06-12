@@ -24,8 +24,22 @@
 # USER:     BYE
 
 def deaf_grandma
+    nohear = "HUH?! SPEAK UP, SONNY!"
+    yeshear = "NO, NOT SINCE 1938!"
+    message = gets.chomp.to_s
+    while message[1] >= "a" || message == ""
+      puts nohear
+      message = gets.chomp.to_s
+    end
 
+    if message[2] < "a" && message != "BYE"
+      puts yeshear
+    deaf_grandma
+    else
+    end
 end
+
+deaf_grandma
 
 
 
@@ -33,4 +47,4 @@ end
 
 # This will call your code so you can run it from the terminal.
 # But not call it otherwise, so that it will work with our tests.
-deaf_grandma if $0 == __FILE__
+# deaf_grandma if $0 == __FILE__
