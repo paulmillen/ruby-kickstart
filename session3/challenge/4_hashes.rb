@@ -12,7 +12,7 @@ def first_pos(str)
 
    arr = str.split
 
-   arr.each_with_index do |word,index|
+   arr.each do |word|
 
    h[word] = arr.index(word)
 
