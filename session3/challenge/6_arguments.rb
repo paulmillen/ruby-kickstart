@@ -17,3 +17,34 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(value,*args)
+
+  arr = []
+  answer = []
+
+  args.each do |x|
+    if x
+      arr << true
+    else
+      arr << false
+    end
+  end
+
+  arr.each_slice(2) do |slice|
+
+    if value == true
+      if (slice[0] && slice[1]) || (slice[0] == false && slice[1] == false)
+        answer << false
+      else
+        answer << true
+      end
+    elsif value == false
+      if (slice[0] && slice[1]) || (slice[0] == false && slice[1] == false)
+        answer << true
+      else
+        answer << false
+      end
+    end
+  end
+ answer
+end
