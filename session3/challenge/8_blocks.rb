@@ -26,14 +26,31 @@
 
 
 class Person
-  attr_accessor :name
+  attr_accessor :name, :age, :quote
 
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
+  def initialize(optional=Hash.new,&initializer)
+    @name = optional[:name]
+    @age = optional[:age]
+    @quote = optional[:quote]
+    @initializer = (initializer || Proc.new {|person|})
+    reinit
   end
 
   def reinit
     @initializer.call self
   end
 end
+
+#paul = Person.new :name=> "Paul", :age=>32 {|x| x.quote = "Is this working?"}
+
+#p paul.name
+#p paul.age
+#p paul.quote
+
+#paul.quote = "This is the new quote"
+
+#p paul.quote
+
+#paul.reinit
+
+#p paul.quote
