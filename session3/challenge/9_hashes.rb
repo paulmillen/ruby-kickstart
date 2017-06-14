@@ -45,10 +45,6 @@ def shared(a, b)
     return_array << key if value == [true,true]
   end
 
-  answer = [return_hash,return_array]
-
-  answer
+  return return_hash,return_array
 
 end
-
-shared [1,2,3], [1,2,4]
