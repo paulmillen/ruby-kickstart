@@ -30,5 +30,16 @@
 # end
 
 
-def array_init
+def array_init(param=5,&block)
+
+  if block != nil
+    array = Array.new(param,&block)
+
+  else
+  array = Array.new(param){ |i| (i*100).to_s }
+
+  end
+
+  array
+
 end
