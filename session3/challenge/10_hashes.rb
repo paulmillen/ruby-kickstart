@@ -28,6 +28,58 @@
 #
 # create it from scratch :)
 
+def pathify(hash_param=Hash.new)
 
-def pathify
+  return hash_param.map { |path| "/" + path} if hash_param.is_a? Array
+
+  to_return = []
+  hash_param.each do |key,value|
+    parent = "/" + key
+    child = pathify(value)
+    child.each do |path|
+      to_return << (parent + path)
+    end
+  end
+
+  to_return
 end
+
+
+#  array1 = []
+#  def array_path(array_param)
+#	   array_param.each do |value|
+#        + "/" + value.join() if value.is_a? Array
+#    end
+#  end
+
+#  hash_param.each do |key,value|
+#    array1 << "/" + key.to_s if key.is_a? Hash,
+#    array1 << "/" + key.to_s if value.is_a? Hash,
+#    array_path(value) if value.is_a? Array
+#  end
+
+#	array1
+#end
+
+#usr = {'bin' => ['ruby'], 'include' => ['zlib.h'] }
+
+#pathify(usr)
+
+
+
+
+
+
+#def pathify(hash_param=Hash.new)
+
+#  return_array = []
+
+#  return hash_param.each do |key,value|
+#    if value.is_a? Array
+#      value.each {|x| return_array << x}
+#    end
+#  end
+#  puts return_array
+#end
+
+#pathify 'usr' => {'bin' => ['ruby', 'perl'] }
