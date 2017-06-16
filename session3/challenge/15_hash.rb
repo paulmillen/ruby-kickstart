@@ -38,3 +38,16 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+def middle(head)
+
+  to_return = []
+
+  while head[:next] != nil
+    to_return << head[:data]
+    middle(head[:next])
+  end
+  to_return[to_return.length/2]
+end
+
+# doesn't work.  had to look at the answer...
