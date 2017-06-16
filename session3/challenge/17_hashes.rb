@@ -7,3 +7,15 @@
 #
 # print_list_in_reverse head   # >> "1\n2\n"
 
+def print_list_in_reverse(list)
+
+  to_return = []
+
+  while list
+    to_return << list[:data]
+    list = list[:next]
+  end
+
+  to_return.reverse.each {|x| puts x}
+
+end
