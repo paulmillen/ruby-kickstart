@@ -21,11 +21,67 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*params)
+  problem = params.pop[:problem] if params.last.is_a? Hash
+  problem ||= :count_clumps
+
+  return count_clumps(*params) if problem == :count_clumps
+  return same_ends(*params)    if problem == :same_ends
 end
 
-def same_ends
+def same_ends(*arr)
+  arr = arr[0] if arr[0].is_a?(Array)
+  n = arr.shift
+  first = []
+  last = []
+  n.times { |x| first << arr[x] }
+  n.times { |x| last << arr[(x+1)*-1] }
+
+  return false if n == 1 && arr == []
+
+  first == last.reverse
 end
 
-def count_clumps
+def count_clumps(*clumps_arr)
+  clumps_arr = clumps_arr[0] if clumps_arr.length == 1
+  ticker = 0
+  previous = nil
+  count = 0
+
+  clumps_arr.each do |x|
+
+    ticker += 1 if x == previous
+    ticker = 0 if x != previous
+
+    if ticker == 1
+      count += 1
+    end
+
+    previous = x
+  end
+  count
 end
+
+p problem_14 1, 5, 6, 45, 99, 13, 5, 6, :problem => :same_ends
+
+
+
+#def problem_14(*arr,**hash)
+#  p arr
+#  hash = {:problem => :count_clumps} if hash = {}
+#  p hash
+#  hash[:problem] == :count_clumps ? count_clumps(arr) : same_ends(arr)
+#end
+
+
+#def same_ends(n,*number)
+#  first = []
+#  last = []
+#  n.times { first << number.shift }
+#  n.times { last << number.pop }
+
+#  if number.length == n
+#    return true
+#    else first == last.reverse
+#  end
+# end
